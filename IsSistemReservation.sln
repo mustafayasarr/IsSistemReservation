@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26B92CCE-CFFA-41DB-99AC-B887679EDA9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{5369E24E-8800-4238-911F-8D4F4A0C3832}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{19B9EA4C-F589-4545-A607-AE9DFC45DC2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsSistemReservation.App.Core", "IsSistemReservation.App.Core\IsSistemReservation.App.Core.csproj", "{23718C67-4E49-4380-85BC-6B33786D9373}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsSistemReservation.App.Domain", "IsSistemReservation.App.Domain\IsSistemReservation.App.Domain.csproj", "{F26E7EAF-7706-4CAA-A817-36544FC556A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsSistemReservation.App.Infrastructure", "IsSistemReservation.App.Infrastructure\IsSistemReservation.App.Infrastructure.csproj", "{DEE279F5-416C-4CCE-9277-8C54645525A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsSistemReservation.App.ReservationAPI", "IsSistemReservation.App.ReservationAPI\IsSistemReservation.App.ReservationAPI.csproj", "{B5A6546D-94B4-4527-9AB5-3E80A196D370}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23718C67-4E49-4380-85BC-6B33786D9373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23718C67-4E49-4380-85BC-6B33786D9373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23718C67-4E49-4380-85BC-6B33786D9373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23718C67-4E49-4380-85BC-6B33786D9373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F26E7EAF-7706-4CAA-A817-36544FC556A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F26E7EAF-7706-4CAA-A817-36544FC556A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F26E7EAF-7706-4CAA-A817-36544FC556A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F26E7EAF-7706-4CAA-A817-36544FC556A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEE279F5-416C-4CCE-9277-8C54645525A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEE279F5-416C-4CCE-9277-8C54645525A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEE279F5-416C-4CCE-9277-8C54645525A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEE279F5-416C-4CCE-9277-8C54645525A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A6546D-94B4-4527-9AB5-3E80A196D370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A6546D-94B4-4527-9AB5-3E80A196D370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A6546D-94B4-4527-9AB5-3E80A196D370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A6546D-94B4-4527-9AB5-3E80A196D370}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5369E24E-8800-4238-911F-8D4F4A0C3832} = {26B92CCE-CFFA-41DB-99AC-B887679EDA9C}
+		{19B9EA4C-F589-4545-A607-AE9DFC45DC2C} = {26B92CCE-CFFA-41DB-99AC-B887679EDA9C}
+		{23718C67-4E49-4380-85BC-6B33786D9373} = {19B9EA4C-F589-4545-A607-AE9DFC45DC2C}
+		{F26E7EAF-7706-4CAA-A817-36544FC556A6} = {19B9EA4C-F589-4545-A607-AE9DFC45DC2C}
+		{DEE279F5-416C-4CCE-9277-8C54645525A2} = {19B9EA4C-F589-4545-A607-AE9DFC45DC2C}
+		{B5A6546D-94B4-4527-9AB5-3E80A196D370} = {19B9EA4C-F589-4545-A607-AE9DFC45DC2C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1DFC99C6-85C3-45F9-83C1-38EB380174E9}
+	EndGlobalSection
+EndGlobal
