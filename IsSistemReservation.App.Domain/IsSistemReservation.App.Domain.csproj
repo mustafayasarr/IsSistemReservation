@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Dtos\" />
+    <Folder Include="Models\Enums\" />
+    <Folder Include="Models\Constants\" />
+  </ItemGroup>
+
 </Project>
