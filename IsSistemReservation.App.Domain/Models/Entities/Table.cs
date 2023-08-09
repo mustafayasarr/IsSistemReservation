@@ -17,6 +17,6 @@ namespace IsSistemReservation.App.Domain.Models.Entities
         public int Capacity { get; set; }
         public int BabyCapacity { get; set; }
         public Guid TableCategory { get; set; }
-        public IList<Reservation> Bookings { get; set; }
+        public IList<Reservation> Reservations { get; set; }
     }
 }

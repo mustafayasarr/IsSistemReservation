@@ -10,7 +10,7 @@ namespace IsSistemReservation.App.Infrastructure.Repositories.Abstract
 	{
 		IReservationRepository BookingRepository { get; }
 		ICustomerRepository CustomerRepository { get; }
-		IRestaurantTableRepository RestaurantTableRepository { get; }
+		ITableRepository TableRepository { get; }
 		ITableCategoryRepository TableCategoryRepository { get; }
 		void Complete(bool state = true);
 		Task CompleteAsync(bool state = true);

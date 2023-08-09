@@ -21,7 +21,7 @@ namespace IsSistemReservation.App.Infrastructure.Repositories.Concrete
 			transaction = context.Database.BeginTransaction();
 			BookingRepository=new ReservationRepository(_context);
 			CustomerRepository=new CustomerRepository(_context);
-			RestaurantTableRepository=new RestaurantTableRepository(_context);
+			TableRepository=new TableRepository(_context);
 			TableCategoryRepository=new TableCategoryRepository(_context);
 		}
 
@@ -29,7 +29,7 @@ namespace IsSistemReservation.App.Infrastructure.Repositories.Concrete
 
 		public ICustomerRepository CustomerRepository { get; }
 
-		public IRestaurantTableRepository RestaurantTableRepository { get; }
+		public ITableRepository TableRepository { get; }
 
 		public ITableCategoryRepository TableCategoryRepository { get; }
 

@@ -16,7 +16,7 @@ namespace IsSistemReservation.App.ReservationAPI.Bootstrapper
 
 			services.AddScoped<IReservationRepository, ReservationRepository>();
 			services.AddScoped<ICustomerRepository, CustomerRepository>();
-			services.AddScoped<IRestaurantTableRepository, RestaurantTableRepository>();
+			services.AddScoped<ITableRepository, TableRepository>();
 			services.AddScoped<ITableCategoryRepository, TableCategoryRepository>();
 
 			services.AddScoped<IUnitOfWork, UnitOfWork>();

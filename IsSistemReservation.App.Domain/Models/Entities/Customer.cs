@@ -25,7 +25,7 @@ namespace IsSistemReservation.App.Domain.Models.Entities
 		public string LastName { get; set; }
 		public string TelNo { get; set; }
 		public string Email { get; set; }
-		public IList<Reservation> Bookings { get; set; }
+		public IList<Reservation> Reservations { get; set; }
 
 	}
 }

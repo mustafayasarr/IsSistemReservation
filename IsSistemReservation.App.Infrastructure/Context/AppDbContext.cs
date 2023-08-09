@@ -13,9 +13,9 @@ namespace IsSistemReservation.App.Infrastructure.Context
 		public AppDbContext(DbContextOptions options) : base(options)
 		{
 		}
-		public DbSet<Reservation> Booking { get; set; }
+		public DbSet<Reservation> Reservation { get; set; }
         public DbSet<Customer> Customer { get; set; }
-        public DbSet<Table> RestaurantTable { get; set; }	
+        public DbSet<Table> Table { get; set; }	
         public DbSet<TableCategory> TableCategory { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
