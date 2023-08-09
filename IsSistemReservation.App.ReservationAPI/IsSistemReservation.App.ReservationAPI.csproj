@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IsSistemReservation.App.Core\IsSistemReservation.App.Core.csproj" />
     <ProjectReference Include="..\IsSistemReservation.App.Infrastructure\IsSistemReservation.App.Infrastructure.csproj" />
   </ItemGroup>
 

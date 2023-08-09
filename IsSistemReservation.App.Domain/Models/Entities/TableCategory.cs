@@ -19,6 +19,6 @@ namespace IsSistemReservation.App.Domain.Models.Entities
         }
         public string Code { get; set; }
         public string EnvironmentName { get; set; }
-		public IList<Table> ContactInfo { get; set; }
+		public IList<Table> Tables { get; set; }
 	}
 }

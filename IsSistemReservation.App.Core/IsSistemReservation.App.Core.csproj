@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\IsSistemReservation.App.Domain\IsSistemReservation.App.Domain.csproj" />
+    <ProjectReference Include="..\IsSistemReservation.App.Infrastructure\IsSistemReservation.App.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Customer\" />
+    <Folder Include="Services\Reservation\" />
   </ItemGroup>
 
 </Project>

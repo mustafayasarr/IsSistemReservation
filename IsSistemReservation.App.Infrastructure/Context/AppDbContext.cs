@@ -34,9 +34,9 @@ namespace IsSistemReservation.App.Infrastructure.Context
 				{
 					case EntityState.Added:
 						{
-							if (entry.Entity.CreatedAtUTC == DateTime.MinValue)
+							if (entry.Entity.CreatedDate == DateTime.MinValue)
 							{
-								entry.Entity.CreatedAtUTC = DateTime.UtcNow;
+								entry.Entity.CreatedDate = DateTime.Now;
 								entry.Entity.IsDeleted = false;
 							}
 							break;
@@ -44,9 +44,9 @@ namespace IsSistemReservation.App.Infrastructure.Context
 
 					case EntityState.Modified:
 						{
-							if (entry.Entity.ModifiedAtUTC == null)
+							if (entry.Entity.ModifiedDate == null)
 							{
-								entry.Entity.ModifiedAtUTC = DateTime.UtcNow;
+								entry.Entity.ModifiedDate = DateTime.Now;
 							}
 							break;
 						}
@@ -54,9 +54,9 @@ namespace IsSistemReservation.App.Infrastructure.Context
 						{
 							entry.State = EntityState.Modified;
 							entry.Entity.IsDeleted = true;
-							if (entry.Entity.ModifiedAtUTC == null)
+							if (entry.Entity.ModifiedDate == null)
 							{
-								entry.Entity.ModifiedAtUTC = DateTime.UtcNow;
+								entry.Entity.ModifiedDate = DateTime.Now;
 							}
 							break;
 						}

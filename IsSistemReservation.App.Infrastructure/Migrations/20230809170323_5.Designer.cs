@@ -3,6 +3,7 @@ using System;
 using IsSistemReservation.App.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IsSistemReservation.App.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230809170323_5")]
+    partial class _5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +31,7 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -45,7 +48,7 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
@@ -67,7 +70,7 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("CustomerId")
@@ -79,7 +82,7 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("NumberOfGuests")
@@ -88,7 +91,10 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                     b.Property<DateTime>("ReservationDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("TableId")
+                    b.Property<Guid>("RestaurantTableId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("TableId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
@@ -106,10 +112,13 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("BabyCapacity")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Capacity")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsActive")
@@ -118,13 +127,16 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("Number")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("TableCategoryId")
+                    b.Property<Guid>("TableCategory")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("TableCategoryId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("TableName")
@@ -148,7 +160,7 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("EnvironmentName")
@@ -161,7 +173,7 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("ModifiedDate")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -171,32 +183,22 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
 
             modelBuilder.Entity("IsSistemReservation.App.Domain.Models.Entities.Reservation", b =>
                 {
-                    b.HasOne("IsSistemReservation.App.Domain.Models.Entities.Customer", "Customer")
+                    b.HasOne("IsSistemReservation.App.Domain.Models.Entities.Customer", null)
                         .WithMany("Reservations")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IsSistemReservation.App.Domain.Models.Entities.Table", "Table")
+                    b.HasOne("IsSistemReservation.App.Domain.Models.Entities.Table", null)
                         .WithMany("Reservations")
-                        .HasForeignKey("TableId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Table");
+                        .HasForeignKey("TableId");
                 });
 
             modelBuilder.Entity("IsSistemReservation.App.Domain.Models.Entities.Table", b =>
                 {
-                    b.HasOne("IsSistemReservation.App.Domain.Models.Entities.TableCategory", "TableCategory")
-                        .WithMany("Tables")
-                        .HasForeignKey("TableCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TableCategory");
+                    b.HasOne("IsSistemReservation.App.Domain.Models.Entities.TableCategory", null)
+                        .WithMany("ContactInfo")
+                        .HasForeignKey("TableCategoryId");
                 });
 
             modelBuilder.Entity("IsSistemReservation.App.Domain.Models.Entities.Customer", b =>
@@ -211,7 +213,7 @@ namespace IsSistemReservation.App.Infrastructure.Migrations
 
             modelBuilder.Entity("IsSistemReservation.App.Domain.Models.Entities.TableCategory", b =>
                 {
-                    b.Navigation("Tables");
+                    b.Navigation("ContactInfo");
                 });
 #pragma warning restore 612, 618
         }

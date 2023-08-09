@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Dtos\" />
+    <Folder Include="Models\Dtos\Customer\" />
+    <Folder Include="Models\Dtos\Reservation\" />
     <Folder Include="Models\Enums\" />
-    <Folder Include="Models\Constants\" />
   </ItemGroup>
 
 </Project>
