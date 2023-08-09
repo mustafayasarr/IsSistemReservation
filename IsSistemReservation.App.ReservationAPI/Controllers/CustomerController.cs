@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using IsSistemReservation.App.Core.Services.Customer;
+using IsSistemReservation.App.Domain.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using IsSistemReservation.App.Domain.Models.Dtos.Customer;
 
 namespace IsSistemReservation.App.ReservationAPI.Controllers
 {
@@ -7,8 +9,23 @@ namespace IsSistemReservation.App.ReservationAPI.Controllers
 	[ApiController]
 	public class CustomerController : BaseApiController
 	{
-		public CustomerController(ILogger<CustomerController> logger) : base(logger)
+		private ICustomerService _customerService;
+
+		public CustomerController(ICustomerService customerService,ILogger<CustomerController> logger) : base(logger)
 		{
+			_customerService = customerService;
+		}
+
+		[HttpPost]
+		public async Task<ActionResult<BaseResponseResult>> CreateReservation(CustomerRequestDto request)
+		{
+			var response = await _customerService.CreateCustomer(request);
+
+			if (response.HasError)
+			{
+				return BadRequest(response);
+			}
+			return Ok(response);
 		}
 	}
 }

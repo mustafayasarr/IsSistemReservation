@@ -9,8 +9,8 @@ namespace IsSistemReservation.App.Domain.Models.Constants
 	public static class ResponseMessageConstants
 	{
 		public const string AnErrorOccurred = "Bir hata oluştu. Lütfen tekrar deneyiniz.";
-		public const string NoRecordContact = "Contact kaydı bulunmamaktadır.";
-		public const string NoRecordHotel = "Hotel kaydı bulunmamaktadır.";
+		public const string NoRecordCustomer = "Müşteri kaydı bulunmamaktadır.";
+		public const string NoRecordTableCapacity = "Üzgünüz, uygun masa bulunamadı.";
 		public const string AllreadyRecordData = "Böyle bir kayıt bulunmaktadır.";
 	}
 }

@@ -8,7 +8,7 @@ namespace IsSistemReservation.App.Infrastructure.Repositories.Abstract
 {
 	public interface IUnitOfWork : IDisposable
 	{
-		IReservationRepository BookingRepository { get; }
+		IReservationRepository ReservationRepository { get; }
 		ICustomerRepository CustomerRepository { get; }
 		ITableRepository TableRepository { get; }
 		ITableCategoryRepository TableCategoryRepository { get; }

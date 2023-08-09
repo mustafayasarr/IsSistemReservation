@@ -17,8 +17,8 @@ namespace IsSistemReservation.App.Core.Services.Table
 	public class TableService : ITableService
 	{
 		private IUnitOfWork _unitOfWork;
-		private readonly ILogger<TableCategoryService> _logger;
-		public TableService(IUnitOfWork unitOfWork, ILogger<TableCategoryService> logger)
+		private readonly ILogger<TableService> _logger;
+		public TableService(IUnitOfWork unitOfWork, ILogger<TableService> logger)
 		{
 			_unitOfWork = unitOfWork;
 			_logger = logger;

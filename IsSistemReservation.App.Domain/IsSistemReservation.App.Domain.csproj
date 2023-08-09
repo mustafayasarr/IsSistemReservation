@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Dtos\Customer\" />
-    <Folder Include="Models\Dtos\Reservation\" />
     <Folder Include="Models\Enums\" />
   </ItemGroup>
 
