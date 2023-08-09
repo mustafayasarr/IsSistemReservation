@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IsSistemReservation.App.Infrastructure.Repositories.Concrete
 {
-	public class RestaurantTableRepository : Repository<RestaurantTable>, IRestaurantTableRepository
+	public class RestaurantTableRepository : Repository<Table>, IRestaurantTableRepository
 	{
 		public RestaurantTableRepository(AppDbContext dbContext) : base(dbContext)
 		{

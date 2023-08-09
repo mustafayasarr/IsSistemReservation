@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\IsSistemReservation.App.Infrastructure\IsSistemReservation.App.Infrastructure.csproj" />
   </ItemGroup>
 

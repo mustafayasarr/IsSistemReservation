@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace IsSistemReservation.App.Infrastructure.Repositories.Concrete
 {
-	public class BookingRepository : Repository<Booking>, IBookingRepository
+	public class ReservationRepository : Repository<Reservation>, IReservationRepository
 	{
-		public BookingRepository(AppDbContext dbContext) : base(dbContext)
+		public ReservationRepository(AppDbContext dbContext) : base(dbContext)
 		{
 		}
 	}

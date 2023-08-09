@@ -13,15 +13,15 @@ namespace IsSistemReservation.App.Infrastructure.Context
 		public AppDbContext(DbContextOptions options) : base(options)
 		{
 		}
-		public DbSet<Booking> Booking { get; set; }
+		public DbSet<Reservation> Booking { get; set; }
         public DbSet<Customer> Customer { get; set; }
-        public DbSet<RestaurantTable> RestaurantTable { get; set; }	
+        public DbSet<Table> RestaurantTable { get; set; }	
         public DbSet<TableCategory> TableCategory { get; set; }
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Booking>().HasQueryFilter(b => !b.IsDeleted);
+			modelBuilder.Entity<Reservation>().HasQueryFilter(b => !b.IsDeleted);
 			modelBuilder.Entity<Customer>().HasQueryFilter(b => !b.IsDeleted);
-			modelBuilder.Entity<RestaurantTable>().HasQueryFilter(b => !b.IsDeleted);
+			modelBuilder.Entity<Table>().HasQueryFilter(b => !b.IsDeleted);
 			modelBuilder.Entity<TableCategory>().HasQueryFilter(b => !b.IsDeleted);
 			base.OnModelCreating(modelBuilder);
 

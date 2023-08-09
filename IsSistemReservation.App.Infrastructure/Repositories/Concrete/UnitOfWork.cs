@@ -19,13 +19,13 @@ namespace IsSistemReservation.App.Infrastructure.Repositories.Concrete
 		{
 			_context = context;
 			transaction = context.Database.BeginTransaction();
-			BookingRepository=new BookingRepository(_context);
+			BookingRepository=new ReservationRepository(_context);
 			CustomerRepository=new CustomerRepository(_context);
 			RestaurantTableRepository=new RestaurantTableRepository(_context);
 			TableCategoryRepository=new TableCategoryRepository(_context);
 		}
 
-		public IBookingRepository BookingRepository { get; }
+		public IReservationRepository BookingRepository { get; }
 
 		public ICustomerRepository CustomerRepository { get; }
 

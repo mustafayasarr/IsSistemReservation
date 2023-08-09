@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace IsSistemReservation.App.Domain.Models.Entities
 {
-	public class RestaurantTable : EntityBase<Guid>
+	public class Table : EntityBase<Guid>
 	{
-        public RestaurantTable()
+        public Table()
         {
             
         }
         public string TableName { get; set; }
-        public string TableNo { get; set; }
-        public int ChairsCount { get; set; }
-        public int BabyHighchairsCount { get; set; }
+        public int Number { get; set; }
+        public int Capacity { get; set; }
+        public int BabyCapacity { get; set; }
         public Guid TableCategory { get; set; }
-        public IList<Booking> Bookings { get; set; }
+        public IList<Reservation> Bookings { get; set; }
     }
 }

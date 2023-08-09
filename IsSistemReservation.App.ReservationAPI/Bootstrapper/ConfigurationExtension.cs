@@ -14,7 +14,7 @@ namespace IsSistemReservation.App.ReservationAPI.Bootstrapper
 
 			#region Lifetime
 
-			services.AddScoped<IBookingRepository, BookingRepository>();
+			services.AddScoped<IReservationRepository, ReservationRepository>();
 			services.AddScoped<ICustomerRepository, CustomerRepository>();
 			services.AddScoped<IRestaurantTableRepository, RestaurantTableRepository>();
 			services.AddScoped<ITableCategoryRepository, TableCategoryRepository>();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IsSistemReservation.App.Infrastructure.Repositories.Abstract
 {
-	public interface IBookingRepository:IRepository<Booking>
+	public interface IReservationRepository:IRepository<Reservation>
 	{
 	}
 }
