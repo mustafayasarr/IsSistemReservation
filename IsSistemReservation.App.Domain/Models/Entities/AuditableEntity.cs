@@ -10,6 +10,7 @@ namespace IsSistemReservation.App.Domain.Models.Entities
 	{
 		public DateTime CreatedAtUTC { get; set; }
 		public DateTime? ModifiedAtUTC { get; set; }
+		public bool IsActive { get; set; }
 		public bool IsDeleted { get; set; }
 	}
 }
