@@ -1,7 +1,10 @@
-﻿using IsSistemReservation.App.Core.Services.Table;
+﻿using IsSistemReservation.App.Core.Gateways.NotificationService;
+using IsSistemReservation.App.Core.Services.Table;
 using IsSistemReservation.App.Domain.Models.Constants;
 using IsSistemReservation.App.Domain.Models.Dtos;
+using IsSistemReservation.App.Domain.Models.Dtos.Customer;
 using IsSistemReservation.App.Domain.Models.Dtos.Reservation;
+using IsSistemReservation.App.Domain.Models.Dtos.Table;
 using IsSistemReservation.App.Infrastructure.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -17,8 +20,11 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 	{
 		private IUnitOfWork _unitOfWork;
 		private readonly ILogger<ReservationService> _logger;
-		public ReservationService(IUnitOfWork unitOfWork, ILogger<ReservationService> logger)
+		private readonly INotificationGateway _notificationGateway;
+
+		public ReservationService(IUnitOfWork unitOfWork, INotificationGateway notificationGateway, ILogger<ReservationService> logger)
 		{
+			_notificationGateway = notificationGateway;
 			_unitOfWork = unitOfWork;
 			_logger = logger;
 		}
@@ -49,9 +55,16 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 					response.Errors.Add(ResponseMessageConstants.NoRecordTableCapacity);
 					return response;
 				}
-
-				_unitOfWork.ReservationRepository.Add(new Domain.Models.Entities.Reservation(request.CustomerId, getAvailable.Id, request.ReservationDate.Date, request.NumberOfGuests));
+				var entity = new Domain.Models.Entities.Reservation(request.CustomerId, getAvailable.Id, request.ReservationDate.Date, request.NumberOfGuests);
+				_unitOfWork.ReservationRepository.Add(entity);
 				await _unitOfWork.CompleteAsync();
+
+				var responseGateway = await _notificationGateway.SendCustomerReservationMail(new ReservationResultDto(entity.Id, entity.ReservationDate, entity.NumberOfGuests, new CustomerResultDto(getCustomer.Id, getCustomer.Name, getCustomer.LastName, getCustomer.TelNo, getCustomer.Email), new TableResultDto(getAvailable.TableName, getAvailable.Number, getAvailable.Capacity, null, entity.CreatedDate)));
+
+				if (responseGateway.HasError)
+				{
+					_logger.LogError("E-posta servisinden hata döndü", responseGateway.Errors.ToString());
+				}
 			}
 			catch (Exception ex)
 			{
