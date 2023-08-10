@@ -39,7 +39,7 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 
 			try
 			{
-				var getCustomer = await _unitOfWork.CustomerRepository.FirstOrDefaultAsync();
+				var getCustomer = await _unitOfWork.CustomerRepository.FirstOrDefaultAsync(a=>a.Id==request.CustomerId);
 				if (getCustomer == null)
 				{
 					response.Errors.Add(ResponseMessageConstants.NoRecordCustomer);
