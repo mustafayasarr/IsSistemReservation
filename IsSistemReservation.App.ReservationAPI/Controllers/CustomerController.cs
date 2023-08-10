@@ -17,7 +17,7 @@ namespace IsSistemReservation.App.ReservationAPI.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<BaseResponseResult>> CreateReservation(CustomerRequestDto request)
+		public async Task<ActionResult<BaseResponseResult>> CreateCustomer(CustomerRequestDto request)
 		{
 			var response = await _customerService.CreateCustomer(request);
 

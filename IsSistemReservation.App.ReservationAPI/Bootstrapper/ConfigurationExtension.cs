@@ -1,4 +1,6 @@
-﻿using IsSistemReservation.App.Core.Services.Customer;
+﻿using IsSistemReservation.App.Core.Gateways;
+using IsSistemReservation.App.Core.Gateways.NotificationService;
+using IsSistemReservation.App.Core.Services.Customer;
 using IsSistemReservation.App.Core.Services.Reservation;
 using IsSistemReservation.App.Core.Services.Table;
 using IsSistemReservation.App.Core.Services.TableCategory;
@@ -31,6 +33,8 @@ namespace IsSistemReservation.App.ReservationAPI.Bootstrapper
 
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			services.AddSingleton<IRestService, RestService>();
+			services.AddSingleton<INotificationGateway, NotificationGateway>();
 
 			#endregion
 

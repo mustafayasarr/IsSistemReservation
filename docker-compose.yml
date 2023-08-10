@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  issistemreservation.app.reservationapi:
+    image: ${DOCKER_REGISTRY-}issistemreservationappreservationapi
+    environment:
+    - ConnectionStrings__DevelopmentDbConnection=Server=host.docker.internal;Port=5432;Database=IsSistemReservation_Reservation;Integrated Security=true; User Id=postgres;Password=123;
+    - ServiceUrls__ReportService=http://issistemreservation.notification.notificationapi/api
+    ports:
+      - "5100:80"
+    build:
+      context: .
+      dockerfile: IsSistemReservation.App.ReservationAPI/Dockerfile
+
+  issistemreservation.notification.notificationapi:
+    image: ${DOCKER_REGISTRY-}issistemreservationnotificationnotificationapi
+    environment:
+    - ConnectionStrings__DevelopmentDbConnection=Server=host.docker.internal;Port=5432;Database=IsSistemReservation_Notification;Integrated Security=true; User Id=postgres;Password=123;
+    - SmtpConfig__Host=smtp-relay.brevo.com;
+    - SmtpConfig__Port=587;
+    - SmtpConfig__User=mustafa@mustafayasar.info;
+    - SmtpConfig__Password=t2GaMRy6hvxqz4XI;
+    - SmtpConfig__UseSsL=true;
+    ports:
+      - "5101:80"
+    build:
+      context: .
+      dockerfile: IsSistemReservation.Notification.NotificationAPI/Dockerfile
+

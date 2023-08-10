@@ -12,6 +12,8 @@ namespace IsSistemReservation.App.Infrastructure.Context
 	{
 		public AppDbContext(DbContextOptions options) : base(options)
 		{
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 		}
 		public DbSet<Reservation> Reservation { get; set; }
         public DbSet<Customer> Customer { get; set; }
@@ -37,6 +39,7 @@ namespace IsSistemReservation.App.Infrastructure.Context
 							if (entry.Entity.CreatedDate == DateTime.MinValue)
 							{
 								entry.Entity.CreatedDate = DateTime.Now;
+								entry.Entity.IsActive = true;
 								entry.Entity.IsDeleted = false;
 							}
 							break;

@@ -1,7 +1,9 @@
 using Hangfire;
+using Hangfire.Dashboard;
 using Hangfire.PostgreSql;
 using IsSistemReservation.Notification.Core.Services.Mail;
 using IsSistemReservation.Notification.Domain.Models.Dtos;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,10 +22,14 @@ builder.Services.AddHangfire(config =>
 );
 
 
+var options = new DashboardOptions()
+{
+	Authorization = new[] { new MyAuthorizationFilter() }
+};
+
 var app = builder.Build();
-app.UseHangfireDashboard();
-app.UseHangfireServer();
-// Configure the HTTP request pipeline.
+app.UseHangfireDashboard("/hangfire",options);
+
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
@@ -38,3 +44,7 @@ app.MapControllers();
 GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 7 });
 
 app.Run();
+public class MyAuthorizationFilter : IDashboardAuthorizationFilter
+{
+	public bool Authorize(DashboardContext context) => true;
+}

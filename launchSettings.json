@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "issistemreservation.app.reservationapi": "StartDebugging",
+        "issistemreservation.notification.notificationapi": "StartDebugging"
+      }
+    }
+  }
+}

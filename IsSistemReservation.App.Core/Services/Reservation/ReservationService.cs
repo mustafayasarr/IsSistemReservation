@@ -49,7 +49,7 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 					return response;
 				}
 
-				var getAvailable = await _unitOfWork.TableRepository.Table.Include(a => a.Reservations).Where(a => !a.Reservations.Any(c => c.ReservationDate.Date == request.ReservationDate.Date && !c.IsDeleted && c.IsActive) && a.Capacity >= request.NumberOfGuests && a.IsActive && !a.IsDeleted).OrderByDescending(a => a.Capacity).FirstOrDefaultAsync();
+				var getAvailable = await _unitOfWork.TableRepository.Table.Include(a => a.Reservations).Where(a => !a.Reservations.Any(c => c.ReservationDate.Date == request.ReservationDate.Date && !c.IsDeleted && c.IsActive) && a.Capacity >= request.NumberOfGuests && a.IsActive && !a.IsDeleted).OrderBy(a => a.Capacity).FirstOrDefaultAsync();
 				if (getAvailable == null)
 				{
 					response.Errors.Add(ResponseMessageConstants.NoRecordTableCapacity);
