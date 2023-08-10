@@ -12,5 +12,6 @@ namespace IsSistemReservation.App.Core.Services.Customer
 	public interface ICustomerService
 	{
 		Task<BaseResponseResult> CreateCustomer(CustomerRequestDto request);
+		Task<BaseResponseResult<List<CustomerResultDto>>> GetCustomerList();
 	}
 }

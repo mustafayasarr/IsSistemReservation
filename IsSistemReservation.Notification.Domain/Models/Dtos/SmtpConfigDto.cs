@@ -9,9 +9,9 @@ namespace IsSistemReservation.Notification.Domain.Models.Dtos
 	public class SmtpConfigDto
 	{
 		public string Host { get; set; }
-		public int Port { get; set; }
+		public string Port { get; set; }
 		public string User { get; set; }
 		public string Password { get; set; }
-		public bool UseSsl { get; set; }
+		public string UseSsl { get; set; }
 	}
 }

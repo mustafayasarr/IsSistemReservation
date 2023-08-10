@@ -27,5 +27,17 @@ namespace IsSistemReservation.App.ReservationAPI.Controllers
 			}
 			return Ok(response);
 		}
+
+		[HttpGet]
+		public async Task<ActionResult<BaseResponseResult<CustomerResultDto>>> GetCustomerList()
+		{
+			var response = await _customerService.GetCustomerList();
+
+			if (response.HasError)
+			{
+				return BadRequest(response);
+			}
+			return Ok(response);
+		}
 	}
 }

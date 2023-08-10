@@ -26,7 +26,7 @@ namespace IsSistemReservation.Notification.Core.Services.Mail
 
 			MailMessageDto mailMessageDto = new MailMessageDto
 			{
-				Body = $"Sayın {dto.Customer.Name}, rezervasyonunuz başarıyla alındı. Masa No: {dto.Table.Number}, Tarih: {dto.ReservationDate.Date}, Kişi Sayısı: {dto.NumberOfGuests}",
+				Body = $"Sayın {dto.Customer.Name} {dto.Customer.LastName}, rezervasyonunuz başarıyla alındı. Masa No: {dto.Table.Number}, Tarih: {dto.ReservationDate.Date}, Kişi Sayısı: {dto.NumberOfGuests}",
 				To = dto.Customer.Email,
 				Subject = "Rezervasyon Onayı",
 				From = _smtpConfigDto.User
@@ -47,10 +47,11 @@ namespace IsSistemReservation.Notification.Core.Services.Mail
 
 		private SmtpClient CreateSmtpClient()
 		{
-			SmtpClient smtp = new SmtpClient(_smtpConfigDto.Host, _smtpConfigDto.Port);
+			SmtpClient smtp = new SmtpClient(_smtpConfigDto.Host,Convert.ToInt32(_smtpConfigDto.Port));
 			smtp.Credentials = new NetworkCredential(_smtpConfigDto.User, _smtpConfigDto.Password);
-			smtp.EnableSsl = _smtpConfigDto.UseSsl;
+			smtp.EnableSsl = Convert.ToBoolean(_smtpConfigDto.UseSsl);
 			return smtp;
 		}
 	}
 }
+

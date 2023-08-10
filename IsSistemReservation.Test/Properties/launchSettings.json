@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "IsSistemReservation.Test": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

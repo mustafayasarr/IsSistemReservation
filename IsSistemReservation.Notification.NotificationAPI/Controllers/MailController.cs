@@ -9,7 +9,8 @@ namespace IsSistemReservation.Notification.NotificationAPI.Controllers
 	[ApiController]
 	public class MailController : ControllerBase
 	{
-		[HttpGet]
+
+		[HttpPost]
 		public async Task<ActionResult<BaseResponseResult>> SendCustomerReservationMail(ReservationResultDto request)
 		{
 			var response = FireAndForgetJobs.SendCustomerMailJob(request);

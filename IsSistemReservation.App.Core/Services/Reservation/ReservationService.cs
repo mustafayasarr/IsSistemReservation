@@ -19,6 +19,8 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 	public class ReservationService : IReservationService
 	{
 		private IUnitOfWork _unitOfWork;
+		private IUnitOfWork @object;
+		private object value;
 		private readonly ILogger<ReservationService> _logger;
 		private readonly INotificationGateway _notificationGateway;
 
@@ -29,13 +31,15 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 			_logger = logger;
 		}
 
+
+
 		public async Task<BaseResponseResult> CreateReservation(ReservationRequestDto request)
 		{
 			var response = new BaseResponseResult();
 
 			try
 			{
-				var getCustomer = await _unitOfWork.CustomerRepository.FirstOrDefaultAsync(a => a.Id == request.CustomerId);
+				var getCustomer = await _unitOfWork.CustomerRepository.FirstOrDefaultAsync();
 				if (getCustomer == null)
 				{
 					response.Errors.Add(ResponseMessageConstants.NoRecordCustomer);
@@ -76,9 +80,20 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 
 		}
 
-		public Task<BaseResponseResult<List<ReservationResultDto>>> GetReservationList()
+		public async Task<BaseResponseResult<List<ReservationResultDto>>> GetReservationList()
 		{
-			throw new NotImplementedException();
+			var response = new BaseResponseResult<List<ReservationResultDto>>();
+			try
+			{
+				response.Result = await _unitOfWork.ReservationRepository.Table.Include(a => a.Table).Include(a => a.Customer).Where(a => a.IsActive && !a.IsDeleted && a.ReservationDate.Date <= DateTime.Now.Date).Select(a => new ReservationResultDto(a.Id, a.ReservationDate, a.NumberOfGuests, new CustomerResultDto(a.Customer.Id, a.Customer.Name, a.Customer.LastName, a.Customer.TelNo, a.Customer.Email), new TableResultDto(a.Table.TableName, a.Table.Number, a.Table.Capacity, null, a.Table.CreatedDate))).ToListAsync();
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, ex.Message);
+				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+			}
+			return response;
+
 		}
 	}
 }

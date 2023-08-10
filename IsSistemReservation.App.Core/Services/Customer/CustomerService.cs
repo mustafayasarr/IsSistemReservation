@@ -3,6 +3,7 @@ using IsSistemReservation.App.Domain.Models.Constants;
 using IsSistemReservation.App.Domain.Models.Dtos;
 using IsSistemReservation.App.Domain.Models.Dtos.Customer;
 using IsSistemReservation.App.Infrastructure.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -33,13 +34,27 @@ namespace IsSistemReservation.App.Core.Services.Customer
 					response.Errors.Add(ResponseMessageConstants.AllreadyRecordData);
 					return response;
 				}
-				_unitOfWork.CustomerRepository.Add(new Domain.Models.Entities.Customer(request.Name,request.LastName,request.TelNo,request.Email));
+				_unitOfWork.CustomerRepository.Add(new Domain.Models.Entities.Customer(request.Name, request.LastName, request.TelNo, request.Email));
 				await _unitOfWork.CompleteAsync();
-				
+
 			}
 			catch (Exception ex)
 			{
 				await _unitOfWork.CompleteAsync(false);
+				_logger.LogError(ex, ex.Message);
+				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+			}
+			return response;
+		}
+		public async Task<BaseResponseResult<List<CustomerResultDto>>> GetCustomerList()
+		{
+			var response = new BaseResponseResult<List<CustomerResultDto>>();
+			try
+			{
+				response.Result = await _unitOfWork.CustomerRepository.Table.Where(a => a.IsActive).Select(a => new CustomerResultDto(a.Id, a.Name, a.LastName, a.TelNo, a.Email)).ToListAsync();
+			}
+			catch (Exception ex)
+			{
 				_logger.LogError(ex, ex.Message);
 				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
 			}

@@ -29,7 +29,13 @@ var options = new DashboardOptions()
 
 var app = builder.Build();
 app.UseHangfireDashboard("/hangfire",options);
+app.UseHangfireServer(new BackgroundJobServerOptions
+{
 
+	SchedulePollingInterval = TimeSpan.FromSeconds(30),
+
+	WorkerCount = Environment.ProcessorCount * 5
+});
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
@@ -42,7 +48,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 7 });
-
+BackgroundJob.Enqueue(() => Console.WriteLine("Hello, world!"));
 app.Run();
 public class MyAuthorizationFilter : IDashboardAuthorizationFilter
 {
