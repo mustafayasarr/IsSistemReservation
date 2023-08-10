@@ -1,0 +1,17 @@
+﻿using IsSistemReservation.App.Domain.Models.Dtos;
+using IsSistemReservation.App.Domain.Models.Dtos.Reservation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IsSistemReservation.App.Core.Services.Reservation
+{
+	public interface IReservationService
+	{
+		Task<BaseResponseResult> CreateReservation(ReservationRequestDto request);
+		Task<BaseResponseResult<List<ReservationResultDto>>> GetReservationList();
+
+	}
+}
