@@ -34,7 +34,7 @@ namespace IsSistemReservation.App.Core.Services.TableCategory
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode, ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 		}
@@ -48,7 +48,7 @@ namespace IsSistemReservation.App.Core.Services.TableCategory
 				var getHotel = await _unitOfWork.TableCategoryRepository.FirstOrDefaultAsync(x => !x.IsDeleted && x.IsActive && x.Code == dto.Code);
 				if (getHotel!=null)
 				{
-					response.Errors.Add(ResponseMessageConstants.AllreadyRecordData);
+					response.Errors.Add(new Error(ResponseMessageConstants.AllreadyRecordDataCode, ResponseMessageConstants.AllreadyRecordData));
 					return response;
 				}
 				_unitOfWork.TableCategoryRepository.Add(new Domain.Models.Entities.TableCategory(dto.Code, dto.EnvironmentName));
@@ -59,7 +59,7 @@ namespace IsSistemReservation.App.Core.Services.TableCategory
 			{
 				await _unitOfWork.CompleteAsync(false);
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode, ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 		}

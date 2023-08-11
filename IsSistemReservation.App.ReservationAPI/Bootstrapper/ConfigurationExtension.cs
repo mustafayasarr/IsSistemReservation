@@ -4,6 +4,7 @@ using IsSistemReservation.App.Core.Services.Customer;
 using IsSistemReservation.App.Core.Services.Reservation;
 using IsSistemReservation.App.Core.Services.Table;
 using IsSistemReservation.App.Core.Services.TableCategory;
+using IsSistemReservation.App.Core.Validator;
 using IsSistemReservation.App.Infrastructure.Context;
 using IsSistemReservation.App.Infrastructure.Repositories.Abstract;
 using IsSistemReservation.App.Infrastructure.Repositories.Concrete;
@@ -26,7 +27,7 @@ namespace IsSistemReservation.App.ReservationAPI.Bootstrapper
 			services.AddScoped<ITableCategoryRepository, TableCategoryRepository>();
 
 
-			services.AddScoped<ITableCategoryService, TableCategoryService>();
+			services.AddScoped<ITableCategoryService, TableCategoryService>();	
 			services.AddScoped<ITableService, TableService>();
 			services.AddScoped<IReservationService, ReservationService>();
 			services.AddScoped<ICustomerService, CustomerService>();

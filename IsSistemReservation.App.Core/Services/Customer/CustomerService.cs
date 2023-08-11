@@ -31,7 +31,7 @@ namespace IsSistemReservation.App.Core.Services.Customer
 			{
 				if (_unitOfWork.CustomerRepository.Table.Any(a => a.Email == request.Email))
 				{
-					response.Errors.Add(ResponseMessageConstants.AllreadyRecordData);
+					response.Errors.Add(new Error(ResponseMessageConstants.AllreadyRecordDataCode, ResponseMessageConstants.AllreadyRecordData));
 					return response;
 				}
 				_unitOfWork.CustomerRepository.Add(new Domain.Models.Entities.Customer(request.Name, request.LastName, request.TelNo, request.Email));
@@ -42,7 +42,7 @@ namespace IsSistemReservation.App.Core.Services.Customer
 			{
 				await _unitOfWork.CompleteAsync(false);
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode,ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 		}
@@ -56,7 +56,7 @@ namespace IsSistemReservation.App.Core.Services.Customer
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode, ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 		}
