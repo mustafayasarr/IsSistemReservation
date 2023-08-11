@@ -35,7 +35,7 @@ namespace IsSistemReservation.App.Core.Services.Table
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode,ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 		}
@@ -52,7 +52,7 @@ namespace IsSistemReservation.App.Core.Services.Table
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode,ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 		}
@@ -66,7 +66,7 @@ namespace IsSistemReservation.App.Core.Services.Table
 				if (_unitOfWork.TableRepository.Where(a => a.TableCategoryId == dto.TableCategoryId && a.Number == dto.Number && a.IsActive).Any())
 				{
 
-					response.Errors.Add(ResponseMessageConstants.AllreadyRecordData);
+					response.Errors.Add(new Error(ResponseMessageConstants.AllreadyRecordDataCode, ResponseMessageConstants.AllreadyRecordData));
 					return response;
 				}
 				_unitOfWork.TableRepository.Add(new Domain.Models.Entities.Table(dto.TableName, dto.Number, dto.Capacity, dto.TableCategoryId));
@@ -77,7 +77,7 @@ namespace IsSistemReservation.App.Core.Services.Table
 			{
 				await _unitOfWork.CompleteAsync(false);
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode, ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 		}

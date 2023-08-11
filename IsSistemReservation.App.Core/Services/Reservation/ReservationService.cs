@@ -42,21 +42,21 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 				var getCustomer = await _unitOfWork.CustomerRepository.FirstOrDefaultAsync(a=>a.Id==request.CustomerId);
 				if (getCustomer == null)
 				{
-					response.Errors.Add(ResponseMessageConstants.NoRecordCustomer);
+					response.Errors.Add(new Error(ResponseMessageConstants.NoRecordCustomerCode, ResponseMessageConstants.NoRecordCustomer));
 					return response;
 				}
 
 				var getReservation = await _unitOfWork.ReservationRepository.FirstOrDefaultAsync(a => a.CustomerId == request.CustomerId && a.ReservationDate.Day == request.ReservationDate.Day && a.IsActive);
 				if (getReservation != null)
 				{
-					response.Errors.Add(ResponseMessageConstants.AllreadyRecordData);
+					response.Errors.Add(new Error(ResponseMessageConstants.AllreadyRecordDataCode, ResponseMessageConstants.AllreadyRecordData));
 					return response;
 				}
 
 				var getAvailable = await _unitOfWork.TableRepository.Table.Include(a => a.Reservations).Where(a => !a.Reservations.Any(c => c.ReservationDate.Date == request.ReservationDate.Date && !c.IsDeleted && c.IsActive) && a.Capacity >= request.NumberOfGuests && a.IsActive && !a.IsDeleted).OrderBy(a => a.Capacity).FirstOrDefaultAsync();
 				if (getAvailable == null)
 				{
-					response.Errors.Add(ResponseMessageConstants.NoRecordTableCapacity);
+					response.Errors.Add(new Error(ResponseMessageConstants.NoRecordTableCapacityCode, ResponseMessageConstants.NoRecordTableCapacity));
 					return response;
 				}
 				var entity = new Domain.Models.Entities.Reservation(request.CustomerId, getAvailable.Id, request.ReservationDate.Date, request.NumberOfGuests);
@@ -72,7 +72,7 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 			}
 			catch (Exception ex)
 			{
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode, ResponseMessageConstants.AnErrorOccurred));
 				await _unitOfWork.CompleteAsync(false);
 				_logger.LogError(ex, ex.Message);
 			}
@@ -90,7 +90,7 @@ namespace IsSistemReservation.App.Core.Services.Reservation
 			catch (Exception ex)
 			{
 				_logger.LogError(ex, ex.Message);
-				response.Errors.Add(ResponseMessageConstants.AnErrorOccurred);
+				response.Errors.Add(new Error(ResponseMessageConstants.AnErrorOccurredCode, ResponseMessageConstants.AnErrorOccurred));
 			}
 			return response;
 
